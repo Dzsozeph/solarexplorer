@@ -1,0 +1,222 @@
+
+.outfit-font {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #111; 
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 3s ease;
+}
+
+#preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-text{
+	color:rgba(5,47,40,1.00);
+	font-size: 2.6rem;
+}
+
+
+  body {
+    margin: 0;
+    background: black;
+    font-family: Arial, sans-serif;
+    color: white;
+    overflow: hidden;
+	  
+  }
+
+  /* Bal menü */
+  .sidebar {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10;
+	
+	  
+  }
+
+  .planet-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.8s;
+  }
+  .planet-item.active {
+    opacity: 1;
+  }
+
+  .planet-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    /* Félbolygó effekt */
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, transparent 100%);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, transparent 100%);
+    mask-repeat: no-repeat;
+    mask-size: cover;
+  }
+
+  /* Nagy bolygó */
+  .planet-view {
+    position: absolute;
+    top: 20vh;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    
+  }
+
+  .planet-img {
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+    box-shadow: 0 0 60px rgba(0, 200, 255, 0.3);
+    position: relative;
+    z-index: 5;
+  }
+
+  /* Háttérbolygó (következő sorban) */
+  .planet-next {
+    position: absolute;
+    top: 10%;
+    left: 90%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    transform: translate(-50%, -50%);
+    opacity: 0.15;
+    z-index: 1;
+  }
+
+  /* Hold */
+  .moon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-size: cover;
+    transform: translate(-50%, -50%);
+    animation: orbit 120s linear infinite;
+    z-index: -1;
+  }
+
+  @keyframes orbit {
+    from { transform: rotate(0deg) translateX(350px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(350px) rotate(-360deg); }
+  }
+
+  /* Szöveg */
+  .planet-info {
+    margin-top: 30px;
+	  z-index: 1;
+  }
+  .planet-info h1 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-family: 'nova-slim';
+  }
+  .planet-info p {
+    font-size: 0.9rem;
+    color: #aaa;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+.title{
+	margin: 0 auto;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-content: center;
+	font-size: 1.60rem;
+	
+}
+
+.readmore{
+	color: rgba(0, 200, 255, 0.3);
+	text-decoration: underline;
+	margin-top: 20px;
+	cursor: pointer;
+	font-weight: 400;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  background: #111;
+  margin: 8% auto;
+  min-height: 70vh;
+  width: 70%;
+  text-align: center;
+  color: white;
+  box-shadow: 0 0 5px rgba(0,200,255,0.4);
+  padding: 30px;
+  overflow: hidden;
+}
+
+.modal-content img {
+  max-width: 500px;
+  border-radius: 50%;
+  margin: 15px 0;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+}
+.close:hover {
+  color: rgba(16,98,104,1.00);
+}
+#modal-extra {
+  margin-top: 15px;
+  text-align: left;
+  line-height: 1.6;
+}

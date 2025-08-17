@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar Explorer</title>
+<link href="styles.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Felipa&family=Monofett&family=Nosifer&family=Outfit:wght@100..900&family=Zen+Dots&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div id="preloader">
+	<div class="loader-text outfit-font">Loading...</div>
+		</div>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar"></div>
+<header class="title outfit-font">SOLAR EXPLORER</header>
+<!-- Nagy bolygó nézet -->
+<div class="planet-view">
+  <div class="planet-next" id="planet-next"></div>
+  <div class="planet-img" id="planet-img"></div>
+  <div class="moon" id="moon"></div>
+  <div class="planet-info">
+    <h1 id="planet-name"></h1>
+    <p id="planet-desc"></p>
+	   <div class="readmore  outfit-font">READ MORE</div>
+  </div>
+</div>
+<!-- Modal -->
+<!-- Modal -->
+<div id="planet-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modal-title"></h2>
+    <div id="modal-canvas" style="width: 100%; height: 300px;"></div> <!-- ide jön a Three.js -->
+    <p id="modal-desc"></p>
+    <div id="modal-extra"></div>
+  </div>
+</div>
+<script>
+	
+	
+	let currentSlide = 0;
+  window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader");
+    preloader.classList.add("fade-out");
+    setTimeout(() => {
+      preloader.remove();
+    }, 3000); 
+  });  
+const planets = [
+  {
+    name: "Earth",
+    img: "https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg",
+    desc: "Our home. The only planet known to host life.",
+    moons: ["https://images-assets.nasa.gov/image/PIA00405/PIA00405~large.jpg"],
+    details: {
+      diameter: "12,742 km",
+      orbit: "365 days",
+      gravity: "9.8 m/s²"
+    }
+  },
+  {
+    name: "Mars",
+    img: "https://space-facts.com/wp-content/uploads/mars-v2.jpg",
+    desc: "The red planet, a desert world with a thin atmosphere.",
+    moons: [],
+    details: {
+      diameter: "6,779 km",
+      orbit: "687 days",
+      gravity: "3.7 m/s²"
+    }
+  },
+  {
+    name: "Jupiter",
+    img: "https://space-facts.com/wp-content/uploads/jupiter-v2.jpg",
+    desc: "The largest planet in the solar system, a gas giant.",
+    moons: [],
+    details: {
+      diameter: "139,820 km",
+      orbit: "12 years",
+      gravity: "24.8 m/s²"
+    }
+  }
+];
+let current = 0;
+
+function renderSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.innerHTML = "";
+  planets.forEach((planet, i) => {
+    const item = document.createElement("div");
+    item.className = "planet-item" + (i === current ? " active" : "");
+    item.innerHTML = `
+      <div class="planet-icon" style="background-image:url('${planet.img}')"></div>
+      <span>${planet.name}</span>
+    `;
+    item.addEventListener("click", () => {
+      current = i;
+      updatePlanet();
+    });
+    sidebar.appendChild(item);
+  });
+}
+
+function updatePlanet() {
+  const planet = planets[current];
+  const nextPlanet = planets[(current+1) % planets.length];
+
+  document.getElementById("planet-img").style.backgroundImage = `url('${planet.img}')`;
+  document.getElementById("planet-next").style.backgroundImage = `url('${nextPlanet.img}')`;
+  document.getElementById("planet-name").innerText = planet.name;
+  document.getElementById("planet-desc").innerText = planet.desc;
+
+  const moon = document.getElementById("moon");
+  if (planet.moons.length > 0) {
+    moon.style.display = "block";
+    moon.style.backgroundImage = `url('${planet.moons[0]}')`;
+  } else {
+    moon.style.display = "none";
+  }
+
+  renderSidebar();
+}
+
+updatePlanet();
+	
+	///---------------------------------------------------ROTATE------------------------------------------------///
+	let isDragging = false;
+let rotationX = 0;
+let rotationY = 0;
+let lastX, lastY;
+let velocityX = 0;
+let velocityY = 0;
+let animationFrame;
+
+const planetEl = document.getElementById("planet-img");
+
+planetEl.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  cancelAnimationFrame(animationFrame); // állítsuk le a lendület animációt
+  lastX = e.clientX;
+  lastY = e.clientY;
+});
+
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+  applyInertia();
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+
+  let deltaX = e.clientX - lastX;
+  let deltaY = e.clientY - lastY;
+
+  rotationY += deltaX * 0.3;
+  rotationX -= deltaY * 0.3;
+
+  // sebesség mentése az inercia számára
+  velocityX = deltaY * 0.3;
+  velocityY = deltaX * 0.3;
+
+  planetEl.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+
+  lastX = e.clientX;
+  lastY = e.clientY;
+});
+
+// Inercia effekt
+function applyInertia() {
+  velocityX *= 0.95; // lassulás
+  velocityY *= 0.95;
+
+  rotationX -= velocityX;
+  rotationY += velocityY;
+
+  planetEl.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+
+  if (Math.abs(velocityX) > 0.1 || Math.abs(velocityY) > 0.1) {
+    animationFrame = requestAnimationFrame(applyInertia);
+  }
+}
+	
+	//
+	//----------------------------------MODAL------------------------------------------------//
+// Modal vezérlés
+const readMoreBtn = document.querySelector(".readmore");
+const modal = document.getElementById("planet-modal");
+const modalTitle = document.getElementById("modal-title");
+const modalDesc = document.getElementById("modal-desc");
+const modalImg = document.getElementById("modal-img");
+const modalExtra = document.getElementById("modal-extra");
+const closeBtn = document.querySelector(".close");
+
+readMoreBtn.addEventListener("click", () => {
+  const planet = planets[current]; // aktuális bolygó
+
+  modalTitle.innerText = planet.name;
+  modalDesc.innerText = planet.desc;
+  modalImg.src = planet.img;
+
+  // extra adatok
+  modalExtra.innerHTML = `
+    <p><strong>Diameter:</strong> ${planet.details.diameter}</p>
+    <p><strong>Orbit Period:</strong> ${planet.details.orbit}</p>
+    <p><strong>Gravity:</strong> ${planet.details.gravity}</p>
+  `;
+
+  modal.style.display = "block";
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+</script>
+	
+	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+let modalSphere, modalRenderer, modalScene, modalCamera;
+
+function initModalPlanet(imgUrl) {
+  const container = document.getElementById("modal-canvas");
+  container.innerHTML = ""; // töröljük az előző canvas-t, ha volt
+
+  modalScene = new THREE.Scene();
+  modalCamera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+  modalCamera.position.z = 5;
+
+  modalRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  modalRenderer.setSize(container.clientWidth, container.clientHeight);
+  container.appendChild(modalRenderer.domElement);
+
+  const light = new THREE.PointLight(0xffffff, 1);
+  light.position.set(10, 10, 10);
+  modalScene.add(light);
+
+  const texture = new THREE.TextureLoader().load(imgUrl);
+  const geometry = new THREE.SphereGeometry(1.5, 700, 700);
+  const material = new THREE.MeshStandardMaterial({ map: texture });
+  modalSphere = new THREE.Mesh(geometry, material);
+  modalScene.add(modalSphere);
+
+  // reszponzív resize
+  window.addEventListener('resize', () => {
+    modalCamera.aspect = container.clientWidth / container.clientHeight;
+    modalCamera.updateProjectionMatrix();
+    modalRenderer.setSize(container.clientWidth, container.clientHeight);
+  });
+
+  animateModalPlanet();
+}
+
+function animateModalPlanet() {
+  requestAnimationFrame(animateModalPlanet);
+  if(modalSphere) modalSphere.rotation.y += 0.01;
+  modalRenderer.render(modalScene, modalCamera);
+}
+
+// Példa a Read More gombra
+readMoreBtn.addEventListener("click", () => {
+  const planet = planets[current];
+
+  modalTitle.innerText = planet.name;
+  modalDesc.innerText = planet.desc;
+
+  modalExtra.innerHTML = `
+    <p><strong>Diameter:</strong> ${planet.details.diameter}</p>
+    <p><strong>Orbit Period:</strong> ${planet.details.orbit}</p>
+    <p><strong>Gravity:</strong> ${planet.details.gravity}</p>
+  `;
+
+  modal.style.display = "block";
+  initModalPlanet(planet.img); // forgó bolygó a modalban
+	texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
+	const material = new THREE.MeshStandardMaterial({ map: texture, side: THREE.FrontSide });
+});
+	
+	
+	
+</script>
+	
+</body>
+</html>

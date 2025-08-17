@@ -53,12 +53,14 @@
 }
 
 .spinner{
-	width: 80px;
+	position: absolute;
+	  width: 80px;
       height: 80px;
       border: 10px solid #444;
       border-top: 10px solid #00ffcc;
       border-radius: 50%;
       animation: spin 1s linear infinite;
+	  left: 40vw;
 }
 
 .music-container{
@@ -434,6 +436,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
     max-height: 100vh;   /* látható magasság */
     overflow-y: auto;     /* görgetés */
     padding: 10px;
+	background-color: rgba(0,0,0,0.92);
 }
 
 .planet-card {
@@ -442,14 +445,14 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 	box-shadow: 0 0 2px #18928C;
 	grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    padding: 50px;
+    padding: 20px;
     opacity: 1;
 	margin: 0 auto;
 }
 
 .planet-card #card1, #card2, #card3, #card4{
 	width: 14vw;
-	height:10vh;
+	height:15vh;
 	box-shadow: 0 0 2px #18928C;
 }
 

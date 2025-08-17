@@ -8,6 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Monofett&family=Nosifer&family=Outfit:wght@100..900&family=Zen+Dots&display=swap" rel="stylesheet">
 </head>
 <body>
+	<div id="cursor-circle">
+	  <div id="cursor-inner"></div>
+	</div>
 	<div class="background"></div>
 	<div id="preloader">
 	<div class="loader-text outfit-font">Loading...</div>
@@ -23,10 +26,12 @@
   <div class="planet-img" id="planet-img"></div>
   <div class="moon" id="moon"></div>
   <div class="planet-info">
-  <h1 id="planet-name" class="outfit-font">Earth</h1>
+  <h1 id="planet-name" class="outfit-font"></h1>
+	
     <p id="planet-desc"></p>
 	   <div class="readmore  outfit-font">READ MORE</div>
   </div>
+
 </div>
 <!-- Modal -->
 <!-- Modal -->
@@ -37,6 +42,7 @@
     <div id="modal-canvas"></div> <!-- ide jön a Three.js -->
     <p id="modal-desc"></p>
     <div id="modal-extra"></div>
+	<button class="btn_down"></button>
   </div>
 </div>
 <script>
@@ -50,6 +56,26 @@
       preloader.remove();
     }, 3000); 
   });  
+	const circle = document.getElementById('cursor-circle');
+let mouseX = 0, mouseY = 0;
+let currentX = 0, currentY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.pageX;
+  mouseY = e.pageY;
+});
+
+function animate() {
+  // Egyszerű lineáris interpoláció (lerp) a sima lassításhoz
+  currentX += (mouseX - currentX) * 0.1; // 0.1 sebesség, lehet változtatni (0 < speed < 1)
+  currentY += (mouseY - currentY) * 0.1;
+
+  circle.style.transform = `translate(calc(${currentX}px - 50%), calc(${currentY}px - 50%))`;
+
+  requestAnimationFrame(animate);
+}
+
+animate();
 	
 	
 	
@@ -363,6 +389,10 @@ readMoreBtn.addEventListener("click", () => {
 texture.wrapT = THREE.RepeatWrapping;
 	const material = new THREE.MeshStandardMaterial({ map: texture, side: THREE.FrontSide });
 });
+	
+	
+	
+	
 	
 	</script>
 

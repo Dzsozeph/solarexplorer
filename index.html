@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🪐 Solar Explorer ┇ Jonas</title>
+<title>🪐 Solar System Explorer ┇ Jonas</title>
 <link href="styles.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Monofett&family=Nosifer&family=Outfit:wght@100..900&family=Zen+Dots&display=swap" rel="stylesheet">
 </head>
@@ -13,14 +13,14 @@
 	</div>
 	<div class="background"></div>
 	<div id="preloader">
-			<div class="preloader-circle">
+			  <div class="spinner"></div>
 	<div class="loader-text outfit-font">Loading...</div>
-	</div>
+
 		</div>
 		
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar"></div>
-<header class="title outfit-font">SOLAR EXPLORER</header>
+<header class="title outfit-font">SOLAR SYSTEM EXPLORER</header>
 	<br>
 <p class="outfit-font copyright">Copyright 2025 ┇ <a href="https://dzsozeph.github.io/portfolio-minimal" target="_blank" class="social-icon" style="color: inherit; text-decoration: none; font-weight: 300;"> Jonas Lab</a></p>
 <!-- Nagy bolygó nézet -->
@@ -48,7 +48,49 @@
 	<button class="btn_down"></button>
   </div>
 </div>
+	<div class="music-container">
+	<button id="playPauseBtn"> <img id="icon" src="play.png" width="30px" height="30px" alt="Play"></button>
+<div id="volume-control" class="volume-container">
+  <img id="volume-btn" src="volume3.png" width="40px" height="40px" alt="Volume" />
+  <input id="volume-slider" type="range" min="0" max="1" step="0.01" value="1">
+</div>
+
+
+<audio id="myAudio" autoplay>
+  <source src="Dreamstate Logic - Holographic Distortions - Dreamstate Logic.mp3" type="audio/mpeg">
+  A böngésződ nem támogatja az audio lejátszást.
+</audio>
+		</div>
 <script>
+	
+	
+	
+	const audio = document.getElementById('myAudio');
+const btn = document.getElementById('playPauseBtn');
+
+btn.addEventListener('click', () => {
+  if(audio.paused){
+    audio.play();
+    icon.src = 'pause.png'; // Itt állítod a pause ikont
+  } else {
+    audio.pause();
+    icon.src = 'play.png'; // Itt állítod vissza a play ikont
+  }
+});
+
+const volumeBtn = document.getElementById('volume-btn');
+const volumeSlider = document.getElementById('volume-slider');
+const volumeContainer = document.getElementById('volume-control');
+
+// Gomb kattintásra csúszka nyitása/zárása
+volumeBtn.addEventListener('click', () => {
+  volumeContainer.classList.toggle('active');
+});
+
+// Csúszka változtatásakor hangerő állítása
+volumeSlider.addEventListener('input', () => {
+  audio.volume = volumeSlider.value;
+});
 ////------------------------------------------PRELOADER------------------------------------------------------------------------////
 	
 	let currentSlide = 0;

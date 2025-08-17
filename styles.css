@@ -29,17 +29,63 @@
   transition: opacity 3s ease;
 }
 
-
-
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.spinner{
+	width: 80px;
+      height: 80px;
+      border: 10px solid #444;
+      border-top: 10px solid #00ffcc;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
 }
+
+.music-container{
+	position: relative;
+	top: -10vh;
+	width: 30vw;
+	height: 10vh;
+	
+}
+
+#playPauseBtn {
+position: absolute;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  top: 0vh;
+}
+.volume-container {
+  
+  display: inline-block;
+  margin-left: 3vw;
+  padding: 5px;
+	
+}
+
+#volume-slider {
+  position: absolute;
+  left: 6vw; /* ikon mellett */
+  top: 25%;
+  width: 100px;
+  height: 50px;
+  transform: translateY(-50%);
+  display: none; /* alapból elrejtve */
+  background-color: transparent;
+ 
+}
+
+/* ha aktív, megjelenik */
+.volume-container.active #volume-slider {
+  display: block;
+}
+
+ @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 #preloader.fade-out {
   opacity: 0;
   pointer-events: none;

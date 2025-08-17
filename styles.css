@@ -269,6 +269,7 @@
   z-index: 1;
   background-image: url(background-modal.jpg);
   background-size: cover;
+	background-repeat: repeat;
 	
 }
 

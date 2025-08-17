@@ -29,6 +29,17 @@
   transition: opacity 3s ease;
 }
 
+
+
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 #preloader.fade-out {
   opacity: 0;
   pointer-events: none;
@@ -309,7 +320,10 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  width: 30px;
+	height: 30px;
+	background-image: url("close.png");
+	background-size: cover;
   cursor: pointer;
 }
 .close:hover {

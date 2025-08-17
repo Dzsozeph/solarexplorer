@@ -22,7 +22,7 @@
 <div class="sidebar" id="sidebar"></div>
 <header class="title outfit-font">SOLAR SYSTEM EXPLORER</header>
 	<br>
-<p class="outfit-font copyright">Copyright 2025 ┇ <a href="https://dzsozeph.github.io/portfolio-minimal" target="_blank" class="social-icon" style="color: inherit; text-decoration: none; font-weight: 300;"> Jonas Lab</a></p>
+<p class="outfit-font copyright">Copyright 2025 ┇ <a href="https://dzsozeph.github.io/portfolio-minimal" target="_blank" class="social-icon" style="color: inherit; text-decoration: none; font-weight: 300;">Jonas Lab </a></p>
 <!-- Nagy bolygó nézet -->
 <div class="planet-view">
   <div class="planet-next" id="planet-next"></div>
@@ -76,24 +76,7 @@
 		</div>
 <script>
 	
-	function showPlanetInfo(planet) {
-    document.getElementById('planet-name').textContent = planet.name;
-    document.getElementById('planet-desc').textContent = planet.desc;
-
-    const detailsList = document.getElementById('planet-details');
-    detailsList.innerHTML = `
-        <li>Diameter: ${planet.details.diameter}</li>
-        <li>Orbit: ${planet.details.orbit}</li>
-        <li>Gravity: ${planet.details.gravity}</li>
-    `;
-
-    const moonsContainer = document.getElementById('planet-moons');
-    moonsContainer.innerHTML = planet.moons.length
-        ? planet.moons.map(m => `<img src="${m}" width="50"/>`).join('')
-        : '';
-}
-	
-	
+//---------------------------------------------------------------AUDIO---------------------------------------------//
 	
 	const audio = document.getElementById('myAudio');
 const btn = document.getElementById('playPauseBtn');
@@ -152,7 +135,7 @@ function animate() {
 
 animate();
 	
-	
+	//---------------------------------------------------------------PLANETINFO MODAL---------------------------------------------//
 	function showPlanetInfo(planet) {
   // Title, desc, egyéb modal elemek
   document.getElementById('modal-title').textContent = planet.name;
@@ -170,6 +153,7 @@ animate();
     <p><strong>Diameter:</strong> ${planet.details.diameter}</p>
     <p><strong>Orbit:</strong> ${planet.details.orbit}</p>
     <p><strong>Gravity:</strong> ${planet.details.gravity}</p>
+ <p><strong>Life:</strong> ${planet.details.life}</p>
   `;
   infoContainer.appendChild(details);
 document.querySelectorAll('.planet-button').forEach((btn, index) => {
@@ -235,7 +219,8 @@ const planets = [
     details: {
       diameter: "139,820 km",
       orbit: "12 years",
-      gravity: "24.8 m/s²"
+      gravity: "24.8 m/s²",
+	  life: "Yes"
     }
   },
 	{
@@ -246,7 +231,8 @@ const planets = [
     details: {
       diameter: "139,820 km",
       orbit: "12 years",
-      gravity: "24.8 m/s²"
+      gravity: "24.8 m/s²",
+		life: "Yes"
     }
 		},
 	
@@ -407,6 +393,7 @@ readMoreBtn.addEventListener("click", () => {
     <p><strong>Diameter:</strong> ${planet.details.diameter}</p>
     <p><strong>Orbit Period:</strong> ${planet.details.orbit}</p>
     <p><strong>Gravity:</strong> ${planet.details.gravity}</p>
+
   `;
 
   modal.style.display = "block";
@@ -435,6 +422,7 @@ readMoreBtn.addEventListener("click", () => {
     <p><strong>Diameter:</strong> ${planet.details.diameter}</p>
     <p><strong>Orbit Period:</strong> ${planet.details.orbit}</p>
     <p><strong>Gravity:</strong> ${planet.details.gravity}</p>
+ <p><strong>Life:</strong> ${planet.details.life}</p>
   `;
 
   modal.style.display = "block";

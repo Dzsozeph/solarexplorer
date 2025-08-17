@@ -48,8 +48,17 @@
     <div id="modal-extra"></div>
 	<button class="btn_down"></button>
 	      <!-- Új konténer a bolygó információkhoz -->
-	    <div id="planet-info-container">
+	   <div id="planet-info-container">
+    <div class="planet-card">
+		<div id="card1"></div>
+		<div id="card2"></div>
+		<div id="card3"></div>
+		<div id="card4"></div>
+		<div id="card5"></div>
+        <ul id="planet-details"></ul>
+        <div id="planet-moons"></div>
     </div>
+</div>
   </div>
 </div>
 	<div class="music-container">
@@ -66,6 +75,23 @@
 </audio>
 		</div>
 <script>
+	
+	function showPlanetInfo(planet) {
+    document.getElementById('planet-name').textContent = planet.name;
+    document.getElementById('planet-desc').textContent = planet.desc;
+
+    const detailsList = document.getElementById('planet-details');
+    detailsList.innerHTML = `
+        <li>Diameter: ${planet.details.diameter}</li>
+        <li>Orbit: ${planet.details.orbit}</li>
+        <li>Gravity: ${planet.details.gravity}</li>
+    `;
+
+    const moonsContainer = document.getElementById('planet-moons');
+    moonsContainer.innerHTML = planet.moons.length
+        ? planet.moons.map(m => `<img src="${m}" width="50"/>`).join('')
+        : '';
+}
 	
 	
 	
@@ -420,7 +446,7 @@ texture.wrapT = THREE.RepeatWrapping;
 	
 
 </script>
-	
+	<!-------------------------------------------THREEE.JS-------------------------------------------->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 let modalSphere, modalRenderer, modalScene, modalCamera;

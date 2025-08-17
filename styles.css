@@ -361,7 +361,11 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 	
 }
 
-
+.planet-info-container{
+	height: 100%;
+	background-color: red;
+	
+}
 
 .close {
   color: #aaa;

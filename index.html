@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🪐 Solar System Explorer ┇ Jonas</title>
+<title>🪐 SSE ┇ Jonas</title>
 <link href="styles.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Monofett&family=Nosifer&family=Outfit:wght@100..900&family=Zen+Dots&display=swap" rel="stylesheet">
 </head>
@@ -39,6 +39,7 @@
 <!-- Modal -->
 <!-- Modal -->
 <div id="planet-modal" class="modal">
+	
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2 id="modal-title"></h2>
@@ -46,6 +47,9 @@
     <p id="modal-desc"></p>
     <div id="modal-extra"></div>
 	<button class="btn_down"></button>
+	      <!-- Új konténer a bolygó információkhoz -->
+	    <div id="planet-info-container">
+    </div>
   </div>
 </div>
 	<div class="music-container">
@@ -123,7 +127,45 @@ function animate() {
 animate();
 	
 	
-	
+	function showPlanetInfo(planet) {
+  // Title, desc, egyéb modal elemek
+  document.getElementById('modal-title').textContent = planet.name;
+  document.getElementById('modal-desc').textContent = planet.desc;
+
+  // Extra tartalom
+  const infoContainer = document.getElementById('planet-info-container');
+  
+  // Töröljük a régi tartalmat
+  infoContainer.innerHTML = '';
+
+  // Például részletek kiírása
+  const details = document.createElement('div');
+  details.innerHTML = `
+    <p><strong>Diameter:</strong> ${planet.details.diameter}</p>
+    <p><strong>Orbit:</strong> ${planet.details.orbit}</p>
+    <p><strong>Gravity:</strong> ${planet.details.gravity}</p>
+  `;
+  infoContainer.appendChild(details);
+document.querySelectorAll('.planet-button').forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    showPlanetInfo(planets[index]);
+    // itt megnyithatod a modal-t is
+  });
+});
+  // Holdak hozzáadása, ha vannak
+  if (planet.moons.length > 0) {
+    const moonsDiv = document.createElement('div');
+    moonsDiv.innerHTML = '<strong>Moons:</strong>';
+    planet.moons.forEach(moon => {
+      const img = document.createElement('img');
+      img.src = moon;
+      img.style.width = '100px'; // vagy tetszőleges méret
+      img.style.margin = '5px';
+      moonsDiv.appendChild(img);
+    });
+    infoContainer.appendChild(moonsDiv);
+  }
+}
 ////------------------------------------------PLANETS------------------------------------------------------------------------////	
 const planets = [
   {
@@ -436,7 +478,16 @@ texture.wrapT = THREE.RepeatWrapping;
 });
 	
 	
-	
+	// Kiválasztjuk a gombot és a modal tartalmát
+const btnDown = document.querySelector('.btn_down');
+const modalContent = document.querySelector('.modal-content');
+
+btnDown.addEventListener('click', () => {
+  modalContent.scrollTo({
+    top: modalContent.scrollHeight, // a tartalom aljához görget
+    behavior: 'smooth'               // sima animáció
+  });
+});
 	
 	
 	</script>

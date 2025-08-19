@@ -599,7 +599,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 
 @media (max-width: 1000px) {
 	#sidebar{
-	margin-top: 73vh;
+	margin-top: 63vh;
     overflow: scroll;
 	}
 	
@@ -618,6 +618,10 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 		width: 30vw;
 		height: 30vh;
 	}
+	.modal-content{
+		width: 100vw;
+		height: 100vh;
+	}
 	}
 @media (max-width: 900px) {
 .planet-img{
@@ -634,10 +638,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 		height: 400px;
 	}
 	
-	.modal-content{
-		width: 100vw;
-		height: 100vh;
-	}
+	
 	
 	.planet-card{
 		margin-top: 15vh !important;

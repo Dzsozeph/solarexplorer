@@ -2,7 +2,7 @@
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>🪐 SSExplorer ┇ Jonas</title>
 <link href="styles.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Monofett&family=Nosifer&family=Outfit:wght@100..900&family=Zen+Dots&display=swap" rel="stylesheet">
@@ -470,10 +470,14 @@ function initModalPlanet(imgUrl) {
   modalScene.add(light);
 
   const texture = new THREE.TextureLoader().load(imgUrl);
-  const geometry = new THREE.SphereGeometry(1.5, 120, 120);
+  const geometry = new THREE.SphereGeometry(1.5, 130, 130);
   const material = new THREE.MeshStandardMaterial({ map: texture });
   modalSphere = new THREE.Mesh(geometry, material);
   modalScene.add(modalSphere);
+	
+texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
+texture.repeat.set(1, 1);
 
   // reszponzív resize
   window.addEventListener('resize', () => {

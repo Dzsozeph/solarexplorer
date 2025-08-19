@@ -624,6 +624,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 	.planet-img{
 		width: 350px;
 		height: 350px;
+		margin-top: 2vh!important;
 	}
 	
 	#modal-canvas{
@@ -638,6 +639,10 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 	
 	.planet-card{
 		margin-top: 15vh !important;
+	
+	}
+	#planet-name{
+		margin-top: 5vh!important;
 	}
 		
 	}

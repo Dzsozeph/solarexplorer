@@ -599,7 +599,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 
 @media (max-width: 1000px) {
 	#sidebar{
-	margin-top: 23vh;
+	margin-top: 73vh;
     overflow: scroll;
 	}
 	
@@ -615,8 +615,8 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 
 @media (max-width: 1150px) {
 	#modal-canvas{
-		width: 40vw;
-		height: 40vh;
+		width: 30vw;
+		height: 30vh;
 	}
 	}
 @media (max-width: 900px) {

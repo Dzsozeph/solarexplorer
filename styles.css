@@ -599,7 +599,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 
 @media (max-width: 1000px) {
 	#sidebar{
-	margin-top: 83vh;
+	margin-top: 63vh;
     overflow: scroll;
 	}
 	

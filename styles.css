@@ -614,6 +614,12 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 }
 
 @media (max-width: 1000px) {
+
+	#sidebar{
+	margin-top: 70vh;
+    overflow: scroll;
+	}
+
 	
 	.planet-icon{
 		width: 25px !important;
@@ -628,6 +634,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 
 @media (max-width: 1150px) {
 	#modal-canvas{
+
 		width: 50vw;
 		height: 70vh;
 	}
@@ -635,7 +642,27 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 		width: 100vw;
 		height: 100vh;
 	}
+
+
+
 	
+@media (max-width: 900px) {
+.planet-img{
+		width: 350px;
+		height: 350px;
+		margin-top: 2vh!important;
+}
+}
+@media (max-width: 600px) {
+	
+	
+	#modal-canvas{
+		width: 400px;
+		height: 400px;
+	}
+	
+	
+
 	.volume-container{
 		position: fixed;
 		bottom: 0!important;
@@ -706,11 +733,11 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 		
 		}
 		}
+
 		@media (max-height: 750px) {
 			.copyright{
 				position: absolute;
 				right: 5vh !important;
 				top: 95vh !important;
 			}
-
-		}
+}

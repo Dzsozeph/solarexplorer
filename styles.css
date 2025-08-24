@@ -68,6 +68,7 @@
 	top: -10vh;
 	width: 30vw;
 	height: 10vh;
+	z-index: 99999;
 	
 }
 
@@ -193,6 +194,10 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 	color: rgba(33,182,189,1.00);
 	top: -20px;
 }
+.copyright span:hover{
+	text-decoration: underline;
+}
+
 
   /* Bal menü */
   .sidebar {
@@ -314,7 +319,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
     background-size: cover;
     transform: translate(-50%, -50%);
     animation: orbit 120s linear infinite;
-    z-index: -1;
+    z-index: 4;
   }
 
   @keyframes orbit {
@@ -418,6 +423,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
   top: 10vh!important;
   text-align: left;
   line-height: 1.6;
+  font-size: 1rem;
 }
 
 #modal-canvas{
@@ -464,8 +470,12 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
     gap: 20px;
     padding: 20px;
     opacity: 1;
-	margin: 0 auto;
+	left: 50%;
+	transform: translateX(-50%);
+	position: fixed;
+	bottom: 0 !important;
 }
+
 
 .planet-card #card1, #card2, #card3, #card4{
 	width: 14vw;
@@ -534,7 +544,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 	}
 
   #sidebar .planet-item {
-    flex: 0 0 auto;         /* ne nyúljon ki teljes szélességre */
+
     width: 80px;            /* fix vagy auto szélesség */
     text-align: center;
   }
@@ -549,6 +559,12 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 	{
 		width: 60px;
 		height:60px;
+	}
+	
+	
+	.planet-icon{
+		width: 30px !important;
+		height: 30px !important;
 	}
     
 }
@@ -598,53 +614,89 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 }
 
 @media (max-width: 1000px) {
-	#sidebar{
-	margin-top: 83vh;
-    overflow: scroll;
-	}
 	
-	.planet-img{
-		margin-top: -8vh;
+	.planet-icon{
+		width: 25px !important;
+		height: 25px !important
+		
 	}
-	
-	#planet-name{
-		margin-top: -6vh;
+	#modal-extra{
+		font-size: 0.8rem;
 	}
 }
 
 
 @media (max-width: 1150px) {
 	#modal-canvas{
-		width: 40vw;
-		height: 60vh;
+		width: 50vw;
+		height: 70vh;
 	}
-	}
-
-@media (max-width: 600px) {
-	.planet-img{
-		width: 350px;
-		height: 350px;
-		margin-top: 2vh!important;
-	}
-	
-	#modal-canvas{
-		width: 400px;
-		height: 400px;
-	}
-	
 	.modal-content{
 		width: 100vw;
 		height: 100vh;
 	}
 	
+	.volume-container{
+		position: fixed;
+		bottom: 0!important;
+		right: 0!important;
+	}
+	}
+
+
+@media (max-width: 900px) {
+.planet-img{
+		width: 350px;
+		height: 350px;
+		margin-top: 2vh!important;
+}
+	
+	
+	#modal-canvas{
+		width: 45vw;
+		height: 45vh;
+	}
+	}
+@media (max-width: 600px) {
+	
+	
+	#modal-canvas{
+		width: 400px;
+		height: 400px;
+	}
+	#modal-extra{
+	 
+		margin-top: 80vh !important;
+		font-size: 0.7rem!important;
+	}
+	
+	.btn_down{
+		display: none;
+	}
+	
+	.volume-container{
+		top: 0 !important;
+		
+	}
+	
+	.music-container{
+		position: absolute;
+		top: 0!important;
+	}
+
+	
+	
 	.planet-card{
-		margin-top: 15vh !important;
+		bottom: 15vh !important;
 	
 	}
 	#planet-name{
 		margin-top: 5vh!important;
 	}
-		
+	#sidebar{
+		position: absolute;
+		margin-top: 83vh;
+	}
 	}
 	
 	@media (max-width: 1650px) {
@@ -653,4 +705,12 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 			right: 0!important;
 		
 		}
+		}
+		@media (max-height: 750px) {
+			.copyright{
+				position: absolute;
+				right: 5vh !important;
+				top: 95vh !important;
+			}
+
 		}

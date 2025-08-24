@@ -18,7 +18,7 @@
 	<div class="spinner"></div>
 	<div class="loader-text outfit-font">Loading...</div>
 	</div>
-		
+		<div class="sun-container"></div>
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar"></div>
 <header class="title outfit-font">SOLAR SYSTEM EXPLORER</header>
@@ -52,13 +52,10 @@
 	      <!-- Új konténer a bolygó információkhoz -->
 	   <div id="planet-info-container">
     <div class="planet-card">
-		<div id="card1"></div>
-		<div id="card2"></div>
-		<div id="card3"></div>
-		<div id="card4"></div>
-		<div id="card5"></div>
-        <ul id="planet-details"></ul>
-        <div id="planet-moons"></div>
+		<div id="card1"><span>Basic and Orbital Data</span></div>
+		<div id="card2"><span>Physical and Atmospheric Characteristics</span></div>
+		<div id="card3"><span>Moons and Special Features</span></div>
+		<div id="card4"><span>Discoveries and Scientific Trivia</span></div>
     </div>
 </div>
   </div>
@@ -127,10 +124,10 @@ document.addEventListener('mousemove', e => {
 
 function animate() {
   // Egyszerű lineáris interpoláció (lerp) a sima lassításhoz
-  currentX += (mouseX - currentX) * 0.1; // 0.1 sebesség, lehet változtatni (0 < speed < 1)
+  currentX += (mouseX - currentX) * 0.21; // 0.1 sebesség, lehet változtatni (0 < speed < 1)
   currentY += (mouseY - currentY) * 0.1;
 
-  circle.style.transform = `translate(calc(${currentX}px - 50%), calc(${currentY}px - 50%))`;
+  circle.style.transform = `translate(calc(${currentX}px - 30%), calc(${currentY}px - 30%))`;
 
   requestAnimationFrame(animate);
 }
@@ -145,10 +142,7 @@ animate();
 
   // Extra tartalom
   const infoContainer = document.getElementById('planet-info-container');
-  
-  // Töröljük a régi tartalmat
-  infoContainer.innerHTML = '';
-
+		
   // Például részletek kiírása
   const details = document.createElement('div');
   details.classList.add('planet-details'); // <-- adunk neki egy class-t
@@ -189,23 +183,43 @@ const planets = [
     details: {
       diameter: "12,742 km",
       orbit: "365 days",
-      gravity: "9.8 m/s²"
-    }
+      gravity: "9.8 m/s²",
+		life: "Yes, the only one planet known."
+    },
+	  
+	   card: [
+      "https://www.legalnomads.com/wp-content/uploads/2012/12/sunrise-1756274_1920-1024x512.jpg",
+	  "https://preview.redd.it/the-size-of-the-moon-compared-to-the-earth-v0-fimgzywl0pob1.jpg?width=1080&crop=smart&auto=webp&s=340b43a3f63bacb506cf147e8b6c616abd4362aa",
+	  "https://api.hub.jhu.edu/factory/sites/default/files/styles/soft_crop_1030/public/earth-core.jpg",
+	  "https://hips.hearstapps.com/hmg-prod/images/graphic-illustration-of-the-earth-and-the-sun-royalty-free-image-1679061019.jpg"
+		   
+
+    ]
   },
   {
     name: "Mars",
-    img: "https://space-facts.com/wp-content/uploads/mars-v2.jpg",
+    img: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Mars_-_August_30_2021_-_Flickr_-_Kevin_M._Gill.png",
     desc: "A cold, dusty red planet once home to flowing water and possibly ancient life..",
     moons: [],
     details: {
       diameter: "6,779 km",
       orbit: "687 days",
-      gravity: "3.7 m/s²"
-    }
+      gravity: "3.7 m/s²",
+		life: "No"
+    
   },
+	    card: [
+      "https://starwalk.space/gallery/images/mars-size/1920x1080.jpg",
+	  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFNorrmcZlCLghlzowmEIlgbNdepZTV89f6w&s",
+	  "https://media.istockphoto.com/id/2057625445/photo/earth-and-mars.jpg?s=612x612&w=0&k=20&c=lNQ6zZYf2gJPV3s_3ts51EG633BVrxHgnvF0xEN3PhU=",
+	  "https://hips.hearstapps.com/hmg-prod/images/graphic-illustration-of-the-earth-and-the-sun-royalty-free-image-1679061019.jpg"
+		   
+
+    ]
+	   },
   {
     name: "Jupiter",
-    img: "https://space-facts.com/wp-content/uploads/jupiter-v2.jpg",
+    img: "jupiter.png",
     desc: "The largest planet in the solar system, a gas giant.",
     moons: ["https://cdn.mos.cms.futurecdn.net/rB4gqjzJxhzzUVgzwr6yXY-970-80.jpg"],
     details: {
@@ -287,6 +301,8 @@ const planets = [
 
 ];
 let current = 0;
+	
+	
 ////------------------------------------------SLIDEBAR------------------------------------------------------------------------////
 function renderSidebar() {
   const sidebar = document.getElementById("sidebar");
@@ -401,24 +417,32 @@ const modalImg = document.getElementById("modal-img");
 const modalExtra = document.getElementById("modal-extra");
 const closeBtn = document.querySelector(".close");
 
-readMoreBtn.addEventListener("click", () => {
-  const planet = planets[current]; // aktuális bolygó
-
+readMoreBtn.addEventListener("click", ()=>{
+  const planet = planets[current];
   modalTitle.innerText = planet.name;
   modalDesc.innerText = planet.desc;
-  modalImg.src = planet.img;
-
-  // extra adatok
   modalExtra.innerHTML = `
     <p><strong>Diameter:</strong> ${planet.details.diameter}</p>
-    <p><strong>Orbit Period:</strong> ${planet.details.orbit}</p>
+    <p><strong>Orbit:</strong> ${planet.details.orbit}</p>
     <p><strong>Gravity:</strong> ${planet.details.gravity}</p>
-
+    <p><strong>Life:</strong> ${planet.details.life || "Unknown"}</p>
   `;
 
-  modal.style.display = "block";
-});
+  const cardIds = ["card1","card2","card3","card4"];
+  cardIds.forEach((id,index)=>{
+    const el = document.getElementById(id);
+    if(el){
+      if(planet.card && planet.card[index]){
+        el.style.backgroundImage = `url('${planet.card[index]}')`;
+      } else {
+        el.style.backgroundImage = "none"; // ha nincs kép, töröljük
+      }
+    }
+  });
 
+  modal.style.display = "block";
+  initModalPlanet(planet.img);
+});
 closeBtn.addEventListener("click", () => {
   modal.style.display = "none";
 });
@@ -429,6 +453,14 @@ window.addEventListener("click", (e) => {
   }
 });
 	
+	
+	//-----------------------------------------TEST-----------------------------------------------//
+
+	
+console.log(planet.card[index]); // Látod-e a linket a konzolon?
+console.log(el); // Megtalálja-e az elemet?
+//-----------------------------------------------END------------------------------------------//
+
 	
 	///-------------------------------------------------READMORE----------------------------------------//
 
@@ -515,7 +547,7 @@ texture.wrapT = THREE.RepeatWrapping;
 	const material = new THREE.MeshStandardMaterial({ map: texture, side: THREE.FrontSide });
 });
 	
-	
+//--------------------------------------------------------BUTTON-DWN------------------------------------------------------//	
 	// Kiválasztjuk a gombot és a modal tartalmát
 const btnDown = document.querySelector('.btn_down');
 const modalContent = document.querySelector('.modal-content');

@@ -89,6 +89,7 @@ position: absolute;
   display: inline-block;
   margin-left: 3vw;
   padding: 5px;
+   cursor: pointer;
 	
 }
 
@@ -477,12 +478,28 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 }
 
 
-.planet-card #card1, #card2, #card3, #card4{
-	width: 14vw;
-	height:15vh;
-	box-shadow: 0 0 2px #18928C;
+.planet-card #card1,
+.planet-card #card2,
+.planet-card #card3,
+.planet-card #card4,
+.planet-card #card5 {
+  width: 14vw;
+  height: 15vh;
+  box-shadow: 0 0 2px #18928C;
+  background-size: cover;
+  background-position: center;
+  z-index: 99999;
 }
 
+.planet-card #card1:hover, #card2:hover, #card3:hover, #card4:hover
+{            
+	transform: scale(1.1);
+	border: 1px solid #3CB7AD;
+}
+
+.planet-card span{
+   margin-top: 30px !important;
+}
 @keyframes bounce {
   0%, 100% {
     transform: translateY(0); /* alaphelyzet */
@@ -493,9 +510,23 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 }
 
 
+strong{
+	color: rgba(33,182,189,1.00);
+}
 
-
-
+.sun-container{
+	position: absolute;
+	top: 14vh;
+	left: 20vw;
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	background-color:red;
+	background-image: url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2cya281eDgyZGxsbXUyNGNmODR4Z3MzbjN2eGk4aHB2MnpydG93byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ctGFLebG1AqK4/giphy.gif);
+	background-size: cover;
+	background-position: cente;
+	
+}
 
 
 
@@ -642,9 +673,14 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 		width: 100vw;
 		height: 100vh;
 	}
+    
+	.planet-card{
+		width: 100vw;
+		
+	}
 
 
-
+}
 	
 @media (max-width: 900px) {
 .planet-img{

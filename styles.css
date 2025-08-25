@@ -532,6 +532,8 @@ strong{
 	width: 150px;
 	height: 150px;
 	border-radius: 50%;
+	background-color: transparent;
+	box-shadow: 0 0 150px rgba(0, 200, 255, 0.4);
 	
 	
 }

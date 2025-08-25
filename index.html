@@ -18,7 +18,10 @@
 	<div class="spinner"></div>
 	<div class="loader-text outfit-font">Loading...</div>
 	</div>
-		<div class="sun-container"></div>
+		<div class="sun-container">
+	<div class="sun-modal">
+			</div>
+		</div>
 <!-- Sidebar -->
 <div class="sidebar" id="sidebar"></div>
 <header class="title outfit-font">SOLAR SYSTEM EXPLORER</header>
@@ -559,7 +562,19 @@ btnDown.addEventListener('click', () => {
   });
 });
 	
-	
+	import {GLTFLoader} from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
+
+const loader = new GLTFLoader();
+loader.load('venu<li></li>s.glb', function(gltf){
+   scene.add(gltf.scene);
+   gltf.scene.rotation.y = Math.PI; // kezdő forgatás
+   function animateModel() {
+      requestAnimationFrame(animateModel);
+      gltf.scene.rotation.y += 0.01;
+      renderer.render(scene, camera);
+   }
+   animateModel();
+});
 	</script>
 
 </body>

@@ -168,6 +168,8 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
+
+
   body {
     margin: 0;
     background: black;
@@ -175,6 +177,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
     color: white;
 	transition: all 3s ease;
     overflow: hidden;
+	 
   }
 
 .background{
@@ -528,6 +531,57 @@ strong{
 	
 }
 
+.sun-modal{
+	position: fixed;
+	z-index: 9;
+background: #000000;
+background: linear-gradient(0deg, rgba(0, 0, 0, 1) 9%, rgba(61, 53, 53, 1) 65%);
+	border: solid 1px #54BCAA;
+	width: 100vw;
+	height: 99vh;
+	top:0 ;
+	margin: 0 auto;
+	align-content: center;
+	justify-content: center;
+	left: 50%;
+	transform: translateX(-50%);
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*----------------------------------------------------------MEDIAQUERYS---------------------------------------------------------------------------*/
@@ -647,7 +701,7 @@ strong{
 @media (max-width: 1000px) {
 
 	#sidebar{
-	margin-top: 70vh;
+	
     overflow: scroll;
 	}
 
@@ -679,7 +733,11 @@ strong{
 		
 	}
 
-
+	.sun-container{
+		
+		margin-top: 15vh;
+		left: 70vw !important;
+	}
 }
 	
 @media (max-width: 900px) {

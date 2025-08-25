@@ -268,6 +268,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
     transform: translateX(-50%);
     text-align: center;
 
+
 	  
     
   }
@@ -283,8 +284,15 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
     box-shadow: 0 0 80px rgba(0, 200, 255, 0.3);
     position: relative;
     z-index: 5;
-	transition: transform 3s ease, opacity 3s ease;
+	animation: rotate 250s linear infinite
+;
+	
   }
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
 .planet-img.enter {
   opacity: 0;
@@ -437,7 +445,7 @@ background: radial-gradient(circle, rgba(0, 149, 166, 0.47) 0%, rgba(13, 17, 37,
 	align-content: center;
 	justify-content: center;
 	background-repeat: repeat!important;
-
+    
 }
 
 #modal-title {
@@ -685,6 +693,7 @@ strong{
 		width: 500px;
 		height: 500px;
 		top: 11vh;
+		
 		
 	}
 	.moon

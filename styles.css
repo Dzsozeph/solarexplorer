@@ -584,11 +584,26 @@ strong{
 }
 
 
+.close-sun{
+	position: absolute;
+	top: 10vh;
+	right: 5vw;
+	width: 30px;
+	height: 30px;
+	background-image: url("close.png");
+	background-size: cover;
+	background-color: transparent;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+
+}
 
 
-
-
-
+.close-sun:hover{
+	box-shadow: 0 0 20px #28B5B0;
+	border-radius: 50%;
+}
 
 
 

@@ -20,7 +20,7 @@
 	</div>
 		<div class="sun-container">
 	<div class="sun-modal">
-		 <span class="close">&times;</span>
+		   <button class="close-sun"></button>
 		
 		<div class="sun-banner">
 			</div>
@@ -87,7 +87,9 @@ document.querySelector(".sun-sun").addEventListener("click", function() {
     document.querySelector(".sun-modal").style.display = "block";
 });
 	
-
+document.querySelector(".close-sun").addEventListener("click", function() {
+    document.querySelector(".sun-modal").style.display = "none";
+});
 
 //---------------------------------------------------------------AUDIO---------------------------------------------//
 	

@@ -65,11 +65,10 @@
 
 .music-container{
 	position: relative;
-	top: -10vh;
-	width: 30vw;
+	top: 80vh;
+	width: 100vw;
 	height: 10vh;
 	z-index: 99999;
-	
 }
 
 
@@ -78,25 +77,25 @@ position: absolute;
   background-color: transparent;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 50px;
   cursor: pointer;
   font-size: 16px;
   top: 0vh;
 }
 .volume-container {
-  
+  position: absolute;
   display: inline-block;
-  margin-left: 3vw;
+  right: 0;
   padding: 5px;
-   cursor: pointer;
+  cursor: pointer;
 	
 }
 
 #volume-slider {
   position: absolute;
-  left: 6vw; /* ikon mellett */
-  top: 25%;
+  right: 3vw; /* ikon mellett */
+  top: 50%;
   width: 100px;
   height: 50px;
   transform: translateY(-50%);
@@ -579,7 +578,7 @@ strong{
 	justify-content: center;
 	left: 50%;
 	transform: translateX(-52.7%);
-	z-index: 11;
+	
 	
 	
 }

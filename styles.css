@@ -68,7 +68,7 @@
 	top: 80vh;
 	width: 100vw;
 	height: 10vh;
-	z-index: 99999;
+	z-index: -1;
 }
 
 
@@ -626,7 +626,9 @@ strong{
 	
 }
 
-
+span{
+    background-color: black;
+}
 
 
 
@@ -879,7 +881,7 @@ strong{
 	}
 	#modal-extra{
 	 
-		margin-top: 80vh !important;
+
 		font-size: 0.7rem!important;
 	}
 	
@@ -910,7 +912,37 @@ strong{
 		position: absolute;
 		margin-top: 83vh;
 	}
+    
+     
+    .planet-card {
+	display: grid;
+    background-color: transparent;
+	box-shadow: 0 0 2px #18928C;
+	grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    opacity: 1;
+	left: 50%;
+	transform: translateX(-50%);
+	position: fixed;
+	bottom: 0 !important;
+}
 	}
+   
+
+
+.planet-card #card1,
+.planet-card #card2,
+.planet-card #card3,
+.planet-card #card4,
+.planet-card #card5 {
+  width: 45vw;
+  height: 15vh;
+  box-shadow: 0 0 2px #18928C;
+  background-size: cover;
+  background-position: center;
+  z-index: 99999;
+}
 	
 	@media (max-width: 1650px) {
 		.volume-container{
